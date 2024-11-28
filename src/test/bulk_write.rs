@@ -306,6 +306,8 @@ async fn cursor_iteration_in_a_transaction() {
 
     let command_started_events = client.events.get_command_started_events(&["getMore"]);
     assert_eq!(command_started_events.len(), 1);
+
+    session.commit_transaction().await.expect("should commit");
 }
 
 // CRUD prose test 9
